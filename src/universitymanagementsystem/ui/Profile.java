@@ -5,6 +5,9 @@
  */
 package universitymanagementsystem.ui;
 
+
+
+
 /**
  *
  * @author powsikan
@@ -16,8 +19,17 @@ public class Profile extends javax.swing.JPanel {
      */
     public Profile() {
         initComponents();
-         stu_id.setText("SE/2016/035");
-         stu_name.setText("K.Powsikan");
+    }
+    
+    
+    public Profile(String name, String std_no) {
+        initComponents();
+       
+             stu_name.setText(name);
+             stu_id.setText(std_no);
+             
+       
+        
     }
     
       

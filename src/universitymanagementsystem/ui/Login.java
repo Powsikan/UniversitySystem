@@ -192,8 +192,8 @@ public class Login extends javax.swing.JFrame {
       String username = s_username.getText();
         String password = s_password.getText();
         String conpassword = s_conpassword.getText();
-        String stu_Name=name.getText();
-        String stu_No=stu_no.getText();
+        String stu_Name = name.getText();
+        String stu_No = stu_no.getText();
 
         
         if (!(password.equals(conpassword) ) || (username.equals(""))) {
@@ -207,9 +207,9 @@ public class Login extends javax.swing.JFrame {
             try {
                 Repository repository = new DatabaseRepository();
                 repository.userPost("insert into users values(?,?,?,?)", stu_No, username, password,stu_Name);
-                MainWindow mainWindow = new MainWindow();
+                MainWindow mainWindow = new MainWindow(stu_Name,stu_No);
                 mainWindow.setVisible(true);
-                this.setVisible(false);
+                 this.setVisible(false);
                 
             }catch (Exception e){
                 e.getMessage();
@@ -227,10 +227,13 @@ public class Login extends javax.swing.JFrame {
       try {
                 Repository repository = new DatabaseRepository();
                 rs = repository.userCheck("select * from users where username=? and password=?",username, password);
-                
+              
                 if(rs.next()){
-                    MainWindow mainWindow = new MainWindow();
+                      String stu_name=rs.getString("name");
+             String stu_No=rs.getString("student_no");
+                    MainWindow mainWindow = new MainWindow(stu_name,stu_No);
                     mainWindow.setVisible(true);
+                    this.setVisible(false);
                 }else{
                 JOptionPane.showMessageDialog(null, "error");
 

@@ -17,16 +17,21 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     
-     CardLayout layout;
+    
     public MainWindow() {
          initComponents();
         
+       
+    }
+    
+     CardLayout layout;
+    public MainWindow(String name,String stu_no) {
+         initComponents();
         layout = new CardLayout();
          main_panel.setLayout(layout);
-        main_panel.add("First", new SubjectEntrollment());
-        main_panel.add("Second", new Profile());
+        main_panel.add("First", new SubjectEntrollment(stu_no));
+        main_panel.add("Second", new Profile(name, stu_no));
          layout.next(main_panel);
-        layout.next(main_panel);
     }
     
     

@@ -5,6 +5,14 @@
  */
 package universitymanagementsystem.ui;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import repository.DatabaseRepository;
+import repository.Repository;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author powsikan
@@ -17,6 +25,16 @@ public class SubjectEntrollment extends javax.swing.JPanel {
     public SubjectEntrollment() {
         initComponents();
     }
+    
+    ResultSet rsc=null;
+     public SubjectEntrollment(String stu_no) {
+        initComponents();
+        
+        Repository repository=new DatabaseRepository();
+        rsc=repository.getCourse("select course,status from courses where student_no=?", stu_no);
+        sub_details.setModel(DbUtils.resultSetToTableModel(rsc));
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,6 +47,7 @@ public class SubjectEntrollment extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         sub_details = new javax.swing.JTable();
+        add_course = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(760, 461));
 
@@ -51,26 +70,34 @@ public class SubjectEntrollment extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        sub_details.setPreferredSize(new java.awt.Dimension(150, 72));
         jScrollPane1.setViewportView(sub_details);
+
+        add_course.setText("Add Course");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(add_course)
+                .addGap(171, 171, 171))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                .addComponent(add_course)
+                .addGap(57, 57, 57))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add_course;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable sub_details;
     // End of variables declaration//GEN-END:variables

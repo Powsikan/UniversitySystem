@@ -47,4 +47,19 @@ public class DatabaseRepository implements Repository {
 
     }
 
+    @Override
+    public ResultSet getCourse(String query, String stu_no) {
+        ResultSet rsc=null;
+          try {
+            DbConnection con = new DbConnection();
+            Connection connector = con.getConnection();
+            PreparedStatement ps = connector.prepareStatement(query);
+            ps.setString(1, stu_no);
+            rsc = ps.executeQuery();
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        return rsc;
+    }
+
 }
