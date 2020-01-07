@@ -47,6 +47,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        profile.setBackground(new java.awt.Color(19, 39, 230));
+        profile.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        profile.setForeground(new java.awt.Color(250, 243, 243));
         profile.setText("Profile");
         profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +57,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        sub_entroll.setBackground(new java.awt.Color(33, 40, 225));
+        sub_entroll.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        sub_entroll.setForeground(new java.awt.Color(253, 239, 239));
         sub_entroll.setText("Subject Entrollment");
         sub_entroll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +78,9 @@ public class MainWindow extends javax.swing.JFrame {
             .addGap(0, 461, Short.MAX_VALUE)
         );
 
+        exit.setBackground(new java.awt.Color(40, 49, 211));
+        exit.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        exit.setForeground(new java.awt.Color(254, 247, 247));
         exit.setText("Exit");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,14 +118,14 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(profile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(main_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(exit)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(48, 48, 48)
                     .addComponent(sub_entroll)
-                    .addContainerGap(526, Short.MAX_VALUE)))
+                    .addContainerGap(523, Short.MAX_VALUE)))
         );
 
         pack();

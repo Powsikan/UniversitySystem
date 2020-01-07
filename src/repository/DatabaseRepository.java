@@ -29,13 +29,16 @@ public class DatabaseRepository implements Repository {
     }
 
     @Override
-    public void userPost(String query, String username, String password) {
+    public void userPost(String query, String stu_No, String username, String password,String stu_Name) {
         try {
             DbConnection con = new DbConnection();
             Connection connector = con.getConnection();
             PreparedStatement ps = connector.prepareStatement(query);
-            ps.setString(1, username);
-            ps.setString(2, password);
+            ps.setString(1, stu_No);
+            ps.setString(2, username);
+            ps.setString(3, password);
+            ps.setString(4, stu_Name);
+            System.out.println(ps);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "record added");
         } catch (SQLException ex) {
