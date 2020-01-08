@@ -217,7 +217,9 @@ public class SubjectEntrollment extends javax.swing.JPanel {
        for(int i=0;i< courses.size();i++){
        Repository repository=new DatabaseRepository();
        repository.addCourse("insert into courses values(?,?,?)",stu_no , (String) courses.get(i), "Entroll");
-       } 
+      
+       }
+       courses.clear();
         Repository repository=new DatabaseRepository();
         rsc=repository.getCourse("select course,status from courses where student_no=?", stu_no);
         sub_details.setModel(DbUtils.resultSetToTableModel(rsc));

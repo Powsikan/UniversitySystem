@@ -52,6 +52,8 @@ public class Login extends javax.swing.JFrame {
         stu_no = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("University Management System-Login");
+        setAlwaysOnTop(true);
 
         jLabel1.setBackground(new java.awt.Color(240, 240, 242));
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
@@ -186,6 +188,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
