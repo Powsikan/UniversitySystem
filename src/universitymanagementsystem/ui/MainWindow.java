@@ -139,6 +139,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void sub_entrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sub_entrollActionPerformed
      
        layout.show(main_panel, "First");
+     
     }//GEN-LAST:event_sub_entrollActionPerformed
 
     private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed

@@ -8,5 +8,6 @@ public interface Repository {
     ResultSet getCourse(String query,String stu_no);
 
     void userPost(String query, String username, String password,String stu_No,String stu_Name);
+    void addCourse(String query,String Student_no,String courses,String status);
 
 }

@@ -5,8 +5,10 @@
  */
 package universitymanagementsystem.ui;
 
+import java.awt.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import repository.DatabaseRepository;
@@ -25,16 +27,17 @@ public class SubjectEntrollment extends javax.swing.JPanel {
     public SubjectEntrollment() {
         initComponents();
     }
-    
+    String stu_no;
     ResultSet rsc=null;
      public SubjectEntrollment(String stu_no) {
         initComponents();
-        
+        this.stu_no=stu_no;
         Repository repository=new DatabaseRepository();
         rsc=repository.getCourse("select course,status from courses where student_no=?", stu_no);
         sub_details.setModel(DbUtils.resultSetToTableModel(rsc));
+        add_coursePanel.setVisible(false);
     }
-
+      List courses;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +51,14 @@ public class SubjectEntrollment extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         sub_details = new javax.swing.JTable();
         add_course = new javax.swing.JButton();
+        add_coursePanel = new javax.swing.JPanel();
+        oop = new javax.swing.JCheckBox();
+        web = new javax.swing.JCheckBox();
+        datastucture = new javax.swing.JCheckBox();
+        dbms = new javax.swing.JCheckBox();
+        mobile = new javax.swing.JCheckBox();
+        construction = new javax.swing.JCheckBox();
+        save = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(760, 461));
 
@@ -63,7 +74,7 @@ public class SubjectEntrollment extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -72,33 +83,153 @@ public class SubjectEntrollment extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(sub_details);
 
+        add_course.setBackground(new java.awt.Color(32, 156, 48));
+        add_course.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         add_course.setText("Add Course");
+        add_course.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_courseActionPerformed(evt);
+            }
+        });
+
+        oop.setText("Object Oriented Programming");
+        oop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oopActionPerformed(evt);
+            }
+        });
+
+        web.setText("Web Development");
+
+        datastucture.setText("Datastucture and algorithms");
+
+        dbms.setText("Database Management System");
+
+        mobile.setText("Mobile Application Development");
+
+        construction.setText("Software Construction");
+
+        save.setBackground(new java.awt.Color(29, 49, 247));
+        save.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout add_coursePanelLayout = new javax.swing.GroupLayout(add_coursePanel);
+        add_coursePanel.setLayout(add_coursePanelLayout);
+        add_coursePanelLayout.setHorizontalGroup(
+            add_coursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(add_coursePanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(add_coursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(construction)
+                    .addComponent(mobile)
+                    .addComponent(dbms)
+                    .addComponent(datastucture)
+                    .addComponent(web)
+                    .addComponent(oop))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, add_coursePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(save)
+                .addGap(31, 31, 31))
+        );
+        add_coursePanelLayout.setVerticalGroup(
+            add_coursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(add_coursePanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(oop)
+                .addGap(18, 18, 18)
+                .addComponent(web)
+                .addGap(18, 18, 18)
+                .addComponent(datastucture)
+                .addGap(18, 18, 18)
+                .addComponent(dbms)
+                .addGap(18, 18, 18)
+                .addComponent(mobile)
+                .addGap(18, 18, 18)
+                .addComponent(construction)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(save)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(add_course)
-                .addGap(171, 171, 171))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_course))
+                .addGap(18, 18, 18)
+                .addComponent(add_coursePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
-                .addComponent(add_course)
-                .addGap(57, 57, 57))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(add_course))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(add_coursePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void add_courseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_courseActionPerformed
+        add_coursePanel.setVisible(true);
+    }//GEN-LAST:event_add_courseActionPerformed
+
+    private void oopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oopActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oopActionPerformed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+       if(oop.isSelected()){
+         courses.add("Object Oriented Programming");
+       }
+       if(web.isSelected()){
+         courses.add("Web Development");
+       }
+       if(datastucture.isSelected()){
+         courses.add("Datastucture and algorithms");
+       }
+       if(dbms.isSelected()){
+         courses.add("Database Management System");
+       }
+       if(mobile.isSelected()){
+         courses.add("Mobile Application Development");
+       }
+       if(construction.isSelected()){
+         courses.add("Software Construction");
+       }
+       for(int i=0;i< courses.getItemCount();i++){
+       Repository repository=new DatabaseRepository();
+       repository.addCourse("insert into courses values(?,?,?)",stu_no , courses.getItem(i), "Entroll");
+       }  
+    }//GEN-LAST:event_saveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_course;
+    private javax.swing.JPanel add_coursePanel;
+    private javax.swing.JCheckBox construction;
+    private javax.swing.JCheckBox datastucture;
+    private javax.swing.JCheckBox dbms;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox mobile;
+    private javax.swing.JCheckBox oop;
+    private javax.swing.JButton save;
     private javax.swing.JTable sub_details;
+    private javax.swing.JCheckBox web;
     // End of variables declaration//GEN-END:variables
 }

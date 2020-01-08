@@ -62,4 +62,24 @@ public class DatabaseRepository implements Repository {
         return rsc;
     }
 
+    @Override
+    public void addCourse(String query,String student_no, String courses, String status) {
+        
+         try {
+            DbConnection con = new DbConnection();
+            Connection connector = con.getConnection();
+            PreparedStatement ps = connector.prepareStatement(query);
+            ps.setString(1, student_no);
+            ps.setString(2, courses);
+            ps.setString(3, status);
+            System.out.println(ps);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "record added");
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+
+        
+    }
+
 }
