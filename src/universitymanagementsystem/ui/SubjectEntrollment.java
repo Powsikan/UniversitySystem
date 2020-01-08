@@ -36,8 +36,9 @@ public class SubjectEntrollment extends javax.swing.JPanel {
         rsc=repository.getCourse("select course,status from courses where student_no=?", stu_no);
         sub_details.setModel(DbUtils.resultSetToTableModel(rsc));
         add_coursePanel.setVisible(false);
+        courses = new ArrayList<String>();
     }
-      List courses;
+      ArrayList courses;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -187,6 +188,7 @@ public class SubjectEntrollment extends javax.swing.JPanel {
 
     private void add_courseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_courseActionPerformed
         add_coursePanel.setVisible(true);
+        add_course.setVisible(false);
     }//GEN-LAST:event_add_courseActionPerformed
 
     private void oopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oopActionPerformed
@@ -212,10 +214,13 @@ public class SubjectEntrollment extends javax.swing.JPanel {
        if(construction.isSelected()){
          courses.add("Software Construction");
        }
-       for(int i=0;i< courses.getItemCount();i++){
+       for(int i=0;i< courses.size();i++){
        Repository repository=new DatabaseRepository();
-       repository.addCourse("insert into courses values(?,?,?)",stu_no , courses.getItem(i), "Entroll");
-       }  
+       repository.addCourse("insert into courses values(?,?,?)",stu_no , (String) courses.get(i), "Entroll");
+       } 
+        Repository repository=new DatabaseRepository();
+        rsc=repository.getCourse("select course,status from courses where student_no=?", stu_no);
+        sub_details.setModel(DbUtils.resultSetToTableModel(rsc));
     }//GEN-LAST:event_saveActionPerformed
 
 

@@ -74,7 +74,7 @@ public class DatabaseRepository implements Repository {
             ps.setString(3, status);
             System.out.println(ps);
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "record added");
+           
         } catch (SQLException ex) {
             ex.getMessage();
         }
